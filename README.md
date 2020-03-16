@@ -76,3 +76,23 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## To Deploy on free hosting Site-> Heroku.
+ 1.Upload your Laravel project on github .
+ 2.Make Account on Heroku
+ 3.New->Create new app-> Enter App name.
+ 4.Create new Pipeline .
+ 5. then create the app.
+ 6. click on the Github(connect to Github) option on the Development method.(to associate it with your GitHub repo)
+ 7.type in the name of the repo, as named on github. After this Successfully linked.
+ 8.scroll down to Manual deployment and click on Deploy Branch.
+ 9.Locally, open up your IDE and create a new file called Procfile and place the line of code below in it and save.
+  "web: vendor/bin/heroku-php-apache2 public/"
+ 10.Push on git repo.
+ 11.Again manually Deploy.
+ 12.go to setting on your Heroku dashboard->Click Reveal Config Vars beside the Config Vars option
+ 13. Add all the variables as placed in .env file of your project.
+ 14. Finally view your project.
+ 
+refer https://medium.com/swlh/how-to-host-your-laravel-application-for-free-on-heroku-4789688d444b
