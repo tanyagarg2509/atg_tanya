@@ -14,9 +14,11 @@ class ATGController extends Controller
     public function store(Request $request){
     	$validatedData = $request->validate
     	([
-			    'name' => ['required'],
-			    'email' => ['required','unique:projects','email:rfc,dns'],
-			    'pin'=>['required','min:6','max:6'],
+			    'name' => 'required',
+                 'email' => 'required|email:rfc,dns|unique:projects,email,NULL,NULL,pin,' . $request['pin'],
+                'pin' => 'required|min:6|max:6|unique:projects,pin,NULL,NULL,email,' . $request['email'],
+			    // 'email' => ['required','unique:projects','email:rfc,dns'],
+			    // 'pin'=>['required','min:6','max:6'],
 			]);
 
        // $mydata=project::get($request['email']);
@@ -33,3 +35,12 @@ class ATGController extends Controller
     
 }
 }
+
+/*
+!! LOcalhost Details!!
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=tanya
+DB_USERNAME=root
+DB_PASSWORD=*/
