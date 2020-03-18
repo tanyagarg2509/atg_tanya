@@ -24,6 +24,10 @@
 			@isset($success)
    				<div class="alert alert-success">
 					  <strong>Success!</strong>.
+					  <br>
+					  @if(session('message'))
+					  	<strong>{{ session('message') }}</strong>
+					  @endif
 					</div>
 			@endisset
 			  		
