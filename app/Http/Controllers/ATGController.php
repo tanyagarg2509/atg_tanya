@@ -21,7 +21,7 @@ class ATGController extends Controller
 
         $validator=$this->authenticate($request);
         if ($validator->fails()) {
-            Log::info('Validation fails!!');  
+         
             return redirect('/form')
                     ->withErrors($validator)
                     ->withInputs(); 
@@ -29,14 +29,6 @@ class ATGController extends Controller
         }
         else{
             $this->dataStore($request);
-            try{
-                Mail::to('tanya@example.com')->send(new WelcomeMail());
-            }
-            catch(\Exception $e)
-            {
-                log::info($e);
-            }
-            // return new WelcomeMail();
             return view('/form',['success'=>'1']);
         }
     }

@@ -20,13 +20,20 @@ trait phptraits {
 	}
 	public function dataStore($request)
 	{
-		
-		Log::info('EMAIL SENT !!');   
 		project::create([
 			'name'=> request('name'),
 			'email'=>request('email'),
 			'pin'=>request('pin')
-		]);   
+		]);
+		 try{
+                Mail::to($request['email'])->send(new WelcomeMail());
+                Log::info('EMAIL SENT !!');  
+            }
+            catch(\Exception $e)
+            {
+                log::info($e);
+            } 
+		   
 
 	}
  
