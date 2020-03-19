@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::get('/form', 'ATGController@index');
 Route::post('/form', 'ATGController@store');
+

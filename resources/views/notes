@@ -1,0 +1,56 @@
+$mydata=project::get($request['email']);
+$data->email=request('email');]
+
+$validatedData =request()->validate([]);
+
+projects::create([
+'name'=>request('name'),
+'email'=>request('email'),
+'pin'=>request('pin')
+]); write : protected $fillable =['name','email','pin']; in model
+
+project::create($validatedData);
+project::update();
+
+Mail::raw('It works!',function($message){
+$message->to(request('email'))
+->subject('Hello I am Tanya!');
+});
+
+
+$validatedData = $request->validate
+([
+'name' => 'required',
+'email' => 'required|email:rfc,dns|unique:projects,email,NULL,NULL,pin,' . $request['pin'],
+'pin' => 'required|min:6|max:6|unique:projects,pin,NULL,NULL,email,' . $request['email'],
+    
+]);
+
+$data= new project();
+$data->name=$request['name'];
+$data->email=$request['email'];
+$data->pin=$request['pin'];
+$data->save();
+
+Mail::to('tanya@example.com')->send(new WelcomeMail());
+return new WelcomeMail();
+
+// return view('/form',['success'=>'1']);
+
+
+public function wsStore(Request $request)
+{
+$validatedData = $request->validate
+([
+'name' => 'required',
+'email' => 'required|email:rfc,dns|unique:projects,email,NULL,NULL,pin,' . $request['pin'],
+'pin' => 'required|min:6|max:6|unique:projects,pin,NULL,NULL,email,' . $request['email'],
+]);
+$data= new project();
+$data->name=$request['name'];
+$data->email=$request['email'];
+$data->pin=$request['pin'];
+$data->save();
+
+
+} 
