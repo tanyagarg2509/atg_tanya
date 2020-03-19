@@ -22,9 +22,10 @@ class ATGController extends Controller
         $validator=$this->authenticate($request);
         if ($validator->fails()) {
          
+            
             return redirect('/form')
-                    ->withErrors($validator)
-                    ->withInputs(); 
+                    ->withErrors($validator->errors())
+                    ->withInput();                    
 
         }
         else{

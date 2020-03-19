@@ -3,6 +3,8 @@
 namespace App\Traits;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 use App\project;
  
 trait phptraits {
