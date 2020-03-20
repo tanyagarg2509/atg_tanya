@@ -88,6 +88,9 @@
                   	 console.log(data);
                   	 if(data.success)
                   	 {
+                  	 	jQuery('#name').val('');
+                   		jQuery('#email').val('');
+                     	jQuery('#pin').val('');
 			             jQuery('#salert').html(data.success);
 			             jQuery('#salert').show();
 			              $('#dalert').hide();
