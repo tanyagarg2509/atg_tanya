@@ -76,7 +76,7 @@
                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                   }
               });jQuery.ajax({
-                  url: "{{ url('http://atg-tanya.herokuapp.com/form') }}",
+                  url: "{{ url('/form') }}",
                   method: 'post',
 
                   data: {

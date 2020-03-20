@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 Route::get('/form', 'ATGController@index');
 // Route::post('/form', 'ATGController@store');
-Route::post('/http://atg-tanya.herokuapp.com/form','WebServicesController@Storeme');
+Route::post('/form','WebServicesController@Storeme');
 
