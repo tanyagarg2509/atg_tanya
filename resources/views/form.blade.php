@@ -35,6 +35,7 @@
 			<!-- @endisset -->
 			  		
 				<div class="alert alert-success" style="display:none"></div>
+				<div class="alert alert-danger" id="dalert" style="display:none"></div>
 		  		<div class="form-group">
 			      <label for="name">Name:</label>
 			      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value={{ old('name')}}>
@@ -74,9 +75,7 @@
                   headers: {
                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                   }
-              });
-               // console.log("data");
-               jQuery.ajax({
+              });jQuery.ajax({
                   url: "{{ url('/form') }}",
                   method: 'post',
 
@@ -91,7 +90,23 @@
                      jQuery('.alert').show();
                      jQuery('.alert').html(result.success);
                     // console.log(result);
-                  }});
+                  },
+                  error: function(data){
+         			    var errors = data.responseJSON;
+		                console.log(errors);
+						errorsHtml = '<ul>';
+
+		                 $.each( errors.errors, function(key,value ) {
+		                      errorsHtml += '<li>'+ value + '</li>'; //showing only the first error.
+		                 });
+		                 errorsHtml += '</ul>';
+		    		
+		    			console.log(errorsHtml);
+		                 $('#dalert').show();
+		                 $( '#dalert' ).html( errorsHtml ); //appending to a <div id="form-errors"></div> inside form  
+		                }
+           			
+              });
                });
             });
 </script>

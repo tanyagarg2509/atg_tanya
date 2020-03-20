@@ -23,19 +23,19 @@ class WebServicesController extends Controller
 			if ($errors->has('email')){
 				$email_error=$errors->first('email');
 				Log::info($email_error);
-				array_push($myerror,'0 :'.$email_error);
+				array_push($myerror,$email_error);
 				
 			}
 			if ($errors->has('name')){
 				$name_error=$errors->first('name');
 				Log::info($name_error);
-				array_push($myerror,'1 :'.$name_error);
+				array_push($myerror,$name_error);
 				
 			}
 			if ($errors->has('pin')){
 				$pin_error=$errors->first('pin');
 				Log::info($pin_error);
-				array_push($myerror,'2 :'.$pin_error);
+				array_push($myerror,$pin_error);
 				
 			}
 			return response()->json(["errors"=>$myerror,"status"=>"fail|0"],422);	
