@@ -75,7 +75,7 @@
                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                   }
               });jQuery.ajax({
-                  url: "{{ url('/form') }}",
+                  url:window.location.href,
                   method: 'post',
                   data: {
                      name: jQuery('#name').val(),
