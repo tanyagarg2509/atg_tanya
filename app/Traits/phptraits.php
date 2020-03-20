@@ -11,13 +11,18 @@ trait phptraits {
  
     public function authenticate($request)
 	{
-
+		$messages = [
+		    'required' =>':attribute is required!',
+		    'email'=>'Invalid Email Address',
+		    'unique'=>'Duplicate :attribute',
+		    'pin.size'=>'Invalid pin',
+		];
 		$validator = Validator::make($request->all(), [
 			'name' => 'required',
             'email' => 'required|email:rfc,dns|unique:projects,email,NULL,NULL,pin,' . $request['pin'],
-            'pin' => 'required|min:6|max:6|unique:projects,pin,NULL,NULL,email,' . $request['email'],
+            'pin' => 'required|size:6|unique:projects,pin,NULL,NULL,email,' . $request['email'],
 
-		]);
+		],$messages);
 		return $validator;  	
 	}
 	public function dataStore($request)
