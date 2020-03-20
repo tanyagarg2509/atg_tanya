@@ -3,8 +3,6 @@
 @section('headerlinks')
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	   <script src="https://code.jquery.com/jquery-3.3.1.min.js">
-		</script>
 	   <meta name="csrf-token" content="{{ csrf_token() }}">
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @endsection
@@ -64,9 +62,9 @@
 		  </form>
 	</div>
 
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+<!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
+        crossorigin="anonymous"> -->
 </script>
 <script>
          jQuery(document).ready(function(){
