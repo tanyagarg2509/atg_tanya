@@ -33,7 +33,7 @@
 				</div> -->
 			<!-- @endisset -->
 			  		
-				<div class="alert alert-success" style="display:none"></div>
+				<div class="alert alert-success" id="salert" style="display:none"></div>
 				<div class="alert alert-danger" id="dalert" style="display:none"></div>
 		  		<div class="form-group">
 			      <label for="name">Name:</label>
@@ -88,8 +88,9 @@
                   	 console.log(data);
                   	 if(data.success)
                   	 {
-			             jQuery('.alert').html(data.success);
-			             jQuery('.alert').show();
+			             jQuery('#salert').html(data.success);
+			             jQuery('#salert').show();
+			              $('#dalert').hide();
                   	 }
                   	 else
                   	 {
@@ -103,7 +104,8 @@
 		    		
 		    			console.log(errorsHtml);
 		                 $('#dalert').show();
-		               	 $( '#dalert' ).html( errorsHtml ); 
+		                 jQuery('#salert').hide();
+		               	 $( '#dalert' ).html( errorsHtml); 
                   	 }
                   },
                   error: function(data){
