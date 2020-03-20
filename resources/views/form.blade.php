@@ -78,35 +78,50 @@
               });jQuery.ajax({
                   url: "{{ url('/form') }}",
                   method: 'post',
-
                   data: {
-
                      name: jQuery('#name').val(),
                      email: jQuery('#email').val(),
                      pin: jQuery('#pin').val()
                   },
                   success: function(result){
-                  	// console.log(result);
-		             jQuery('.alert').show();
-		             $('#dalert').hide();
-		             jQuery('.alert').html(result.success);
-                    // console.log(result);
-                  },
-                  error: function(data){
-         			    var errors = data.responseJSON;
-		                console.log(errors);
-						errorsHtml = '<ul>';
-
-		                 $.each( errors.errors, function(key,value ) {
-		                      errorsHtml += '<li>'+ value + '</li>'; //showing only the first error.
+                  	 // console.log(result);
+                  	 var data=JSON.parse(result);
+                  	 console.log(data);
+                  	 if(data.success)
+                  	 {
+			             jQuery('.alert').html(data.success);
+			             jQuery('.alert').show();
+                  	 }
+                  	 else
+                  	 {
+                  	 	console.log('helo');
+                  	 	 var errorsHtml = '<ul>';
+		                 data.errors.forEach(function(value){
+		                 	console.log(value);
+							errorsHtml += '<li>'+ value + '</li>'; //showing only the first error.
 		                 });
 		                 errorsHtml += '</ul>';
 		    		
 		    			console.log(errorsHtml);
-		    			jQuery('.alert').hide();
 		                 $('#dalert').show();
-		               	 $( '#dalert' ).html( errorsHtml ); //appending to a <div id="form-errors"></div> inside form  
-		                }
+		               	 $( '#dalert' ).html( errorsHtml ); 
+                  	 }
+                  },
+                  error: function(data){
+      //    			    var errors = data.responseJSON;
+		    //             console.log(errors);
+						// errorsHtml = '<ul>';
+
+		    //              $.each( errors.errors, function(key,value ) {
+		    //                   errorsHtml += '<li>'+ value + '</li>'; //showing only the first error.
+		    //              });
+		    //              errorsHtml += '</ul>';
+		    		
+		    // 			console.log(errorsHtml);
+		    // 			jQuery('.alert').hide();
+		    //              $('#dalert').show();
+		    //            	 $( '#dalert' ).html( errorsHtml ); //appending to a <div id="form-errors"></div> inside form  
+		            }
            			
               });
                });

@@ -38,13 +38,13 @@ class WebServicesController extends Controller
 				array_push($myerror,$pin_error);
 				
 			}
-			return response()->json(["errors"=>$myerror,"status"=>"fail|0"],422);	
+			return json_encode(["errors"=>$myerror,"status"=>"fail|0"]);	
 			// return response()->json(["errors"=>,"status"=>"fail|0"],422);	
 		}
 		else{
 			$this->dataStore($request);
 			// return json_encode(['success'=>"Registration done Successfully",$request->all()]);
-			return response()->json(['success'=>"Registration done Successfully"]);
+			return json_encode(['success'=>"Registration done Successfully"]);
 		}
 	}
 }
