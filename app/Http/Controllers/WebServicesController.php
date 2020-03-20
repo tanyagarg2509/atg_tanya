@@ -43,7 +43,8 @@ class WebServicesController extends Controller
 		}
 		else{
 			$this->dataStore($request);
-			return json_encode(['status'=>"1",$request->all()]);
+			// return json_encode(['success'=>"Registration done Successfully",$request->all()]);
+			return response()->json(['success'=>"Registration done Successfully"]);
 		}
 	}
 }

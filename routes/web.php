@@ -15,5 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/form', 'ATGController@index');
-Route::post('/form', 'ATGController@store');
+// Route::post('/form', 'ATGController@store');
+Route::post('/form','WebServicesController@Storeme');
 

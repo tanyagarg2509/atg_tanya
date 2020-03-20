@@ -3,6 +3,8 @@
 @section('headerlinks')
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	   
+	   <meta name="csrf-token" content="{{ csrf_token() }}">
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @endsection
 
@@ -10,9 +12,10 @@
 
 	<div class="container">
 		  <h2>ATG Form</h2>
-		  <form method="POST" action="/form">
+		  <!-- <form method="POST" action="/form"> -->
+		  <form id="myForm">
 		  	@csrf
-		  	@if ($errors->any())
+		  	<!-- @if ($errors->any())
 			    <div class="alert alert-danger">
 			        <ul>
 			            @foreach ($errors->all() as $error)
@@ -20,18 +23,18 @@
 			            @endforeach
 			        </ul>
 			    </div>
-			@endif
-			@isset($success)
-   				<div class="alert alert-success">
+			@endif -->
+			<!-- @isset($success) -->
+   				<!-- <div class="alert alert-success">
 					  <strong>Success!</strong>.
 					  <br>
 					  @if(session('message'))
 					  	<strong>{{ session('message') }}</strong>
 					  @endif
-					</div>
-			@endisset
+				</div> -->
+			<!-- @endisset -->
 			  		
-
+				<div class="alert alert-success" style="display:none"></div>
 		  		<div class="form-group">
 			      <label for="name">Name:</label>
 			      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value={{ old('name')}}>
@@ -55,9 +58,42 @@
 			      	@endif
 			    </div>
 			    
-			    <button type="submit" class="btn btn-default">Submit</button>
+			    <button type="submit" id="ajaxSubmit" class="btn btn-default">Submit</button>
 		  </form>
 	</div>
 
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+</script>
+<script>
+         jQuery(document).ready(function(){
+            jQuery('#ajaxSubmit').click(function(e){
+               e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+               // console.log("data");
+               jQuery.ajax({
+                  url: "{{ url('/form') }}",
+                  method: 'post',
 
+                  data: {
+
+                     name: jQuery('#name').val(),
+                     email: jQuery('#email').val(),
+                     pin: jQuery('#pin').val()
+                  },
+                  success: function(result){
+                  	// console.log(result);
+                     jQuery('.alert').show();
+                     jQuery('.alert').html(result.success);
+                    // console.log(result);
+                  }});
+               });
+            });
+</script>
 @endsection
+
